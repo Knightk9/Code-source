@@ -205,6 +205,21 @@ void Read (fstream fs) {                            //Hàm đọc thông tin sin
         fs.close();
     }
 }
+string findHighestGPA(const vector<SinhVien> &danhSach) {      //Tim sinh vien co so diem cao nhat
+    if (danhSach.empty()) {
+        return "Danh sách rỗng!"; // Xử lý trường hợp danh sách trống
+    }
+
+    const SinhVien *highestGPAStudent = &danhSach[0]; // Giả định sinh viên đầu tiên có GPA cao nhất
+
+    for (const auto &sv : danhSach) {
+        if (sv.getGPA() > highestGPAStudent->getGPA()) {
+            highestGPAStudent = &sv; // Cập nhật sinh viên có GPA cao hơn
+        }
+    }
+
+    return highestGPAStudent->getMSSV(); // Trả về MSSV của sinh viên có GPA cao nhất
+}
 
 int main () {
     cout << "Nhap N: ";
